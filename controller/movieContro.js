@@ -2,7 +2,7 @@ const MOIVE_KEY = process.env.MOIVE_KEY;
 const MOIVE_URL = process.env.MOIVE_URL;
 const axios = require("axios");
 const Moive = require("../models/Moive");
-MoiveContro = async (req, res) => {
+MoiveContro = (req, res) => {
   const { city_name } = req.query;
   const para = {
     parameter: {
@@ -10,8 +10,8 @@ MoiveContro = async (req, res) => {
       query: city_name,
     },
   };
-  const response = await axios.get(MOIVE_URL, para);
-  const dataMoive = response.data.data.map(items => new Moive(items));
+  const response = axios.get(MOIVE_URL, para);
+  const dataMoive = response.data.data.map((items) => new Moive(items));
   res.json(dataMoive);
 };
 

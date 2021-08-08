@@ -3,7 +3,7 @@ const WEATHER_KEY = process.env.WEATHER_KEY;
 
 const axios = require("axios");
 const Weather = require("../models/Weather");
-WeatherContro =  (req, res) => {
+WeatherContro = (req, res) => {
   const { lat, lon } = req.query;
   const para = {
     parameter: {
@@ -12,8 +12,8 @@ WeatherContro =  (req, res) => {
       lon: lon,
     },
   };
-  const response = await axios.get(WEATHER_URL, para);
-  const dataWeather = response.data.results.map(items => new Weather(items));
+  const response = axios.get(WEATHER_URL, para);
+  const dataWeather = response.data.data.map((items) => new Weather(items));
   res.json(dataWeather);
 };
 
